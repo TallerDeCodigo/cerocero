@@ -1,0 +1,50 @@
+(function($){
+
+	"use strict";
+
+	$(function(){
+
+
+		console.log('hello from functions.js');
+
+
+		/**
+		 * Validación de emails
+		 */
+		window.validateEmail = function (email) {
+			var regExp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			return regExp.test(email);
+		};
+
+
+
+		/**
+		 * Regresa todos los valores de un formulario como un associative array 
+		 */
+		window.getFormData = function (selector) {
+			var result = [],
+				data   = $(selector).serializeArray();
+
+			$.map(data, function (attr) {
+				result[attr.name] = attr.value;
+			});
+			return result;
+		}
+
+
+
+		/*** pantalla full screen ***/
+
+		var mq = window.matchMedia( "(min-width: 1024px)" );
+
+		if(mq.matches) {
+			var ventana  = $(window).height();
+			console.log(ventana);
+			$('.container').height(ventana + 'px');
+		}
+
+
+
+	});
+
+})(jQuery);
