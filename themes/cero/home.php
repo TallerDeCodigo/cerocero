@@ -57,10 +57,7 @@
 		<h1>Cero Cero MX<img src="<?php echo THEMEPATH; ?>images/logocero.svg"></h1>
 	</section>
 	
-	<!-- <section id="contenido"> 
-		<i>Envio correctamente</i>
-	</section>
- -->
+
 	<section class="contenido">
 
 		

@@ -35,7 +35,7 @@
 
 		/*** pantalla full screen ***/
 
-		var mq = window.matchMedia( "(min-width: 1024px)" );
+		var mq = window.matchMedia( "(min-width: 320px)" );
 
 		if(mq.matches) {
 			var ventana  = $(window).height();

@@ -80,10 +80,14 @@ h1   { font-size: 24px; font-size: 2.4rem; } /* =24px */
 .txt-rojo{font-family:'UniviaProBook';color:#ff574a;font-size:20pt;}
 .txt-rojo p{line-height: 60px}
 .titulo{font-family:'UniviaProBook';color:#000;font-size:30pt;}
+#gracias section.txt{text-align: left;position:absolute;top:38%;left:40%;display:inline-block;line-height: 60px;font-size: 3em}
+
+div.figura{background-image: url('images/figura.svg');background-repeat:no-repeat;width:80%;height:600px;margin:5% 0% 0% 20%;background-size:contain;}
 
 body.home{background-image:url('images/bg-c.png');background-size:cover;background-position:center;width:100%;text-align:center;background-repeat:no-repeat}
 
 body.page{background-image:none;background-color:#fff;background-size:cover;background-position:center;position:absolute;top:0;left:0;width:100%;text-align:left;background-repeat: no-repeat;text-align: center}
+body.page-id-24{background:#ff574a;}
 
 .logo{width:340px; padding:60px 0; margin: 0 auto; background: url('images/logocero.svg') no-repeat center; }
 .logo h1 {text-indent: -10000000px;}
@@ -124,32 +128,56 @@ p{margin-bottom:0;}
 	.txt-rojo p{line-height: 40px}
 }/*end 1640*/
 
+/*1440*/
+@media only screen and (max-width:1440px){
+	#gracias section.txt{font-size: 2.5em;position:absolute;left:45%;}
+
+}/*end 1440*/
+
+/*1280*/
+@media only screen and (max-width:1280px){
+	#gracias section.txt{font-size: 2.3em;position:absolute;left:50%;}
+
+}/*end 1280*/
+
 
 /*1124*/
 @media only screen and (max-width:1124px){
 	.txt-rojo p{line-height: 41px}
 	#redes{margin-top:50px;}
 	#redes ul li img{width:40px;height:auto;}
+	#gracias section.txt{font-size: 2.1em;position:absolute;left:53%;line-height: 40px}
 }/*end 1124*/
 
 /*1024*/
 @media only screen and (max-width:1024px){
 	.txt-rojo p{line-height: 31px}
+	#gracias section.txt{font-size: 2em;position:absolute;left:55%;line-height: 40px}
 }/*end 1024*/
 
 /*768*/
 @media only screen and (max-width:768px){
 	.logo{padding:60px 0;}
 	#redes ul li img{width:60px;height:auto;}
+	#gracias section.txt{font-size: 2.1em;position:absolute;left:18%;top:70%;line-height: 40px}
+	div.figura{width:80%;height:600px;margin:5% 0% 0% 12%;background-size:contain;}
 }/*end 768*/
 
 /*630*/
 @media only screen and (max-width:630px){
+	.logo{padding:30px 0;}
+	#disclaimer{margin-top:30px;}
 	.form-container form input[type=email]{width:360px;}
 	.form-container form input[type=submit]{width:360px;margin-top:30px;}
 	#redes ul li{margin:0 10px;}
+	#redes ul li img{width:40px;height:auto;}
+	#gracias section.txt{position:absolute;left:18%;top:60%;}
 }/*end 630*/
-
+@media only screen and (max-width: 480px){
+	#gracias section.txt{position:absolute;left:18%;top:50%;}
+	.form-container{margin-top:30px;}
+	.form-container form input[type=submit]{width:360px;margin-top:10px;}
+}
 /*425*/
 @media only screen and (max-width:425px){
 	#redes ul li{margin:0 10px;}
@@ -159,6 +187,7 @@ p{margin-bottom:0;}
 	.txt-rojo{font-family:'UniviaProBook';color:#ff574a;font-size:16pt;margin-top:0;}
 	.txt{font-family:'UniviaProBook';color:#fff;font-size:16pt;}
 	.texto{margin:50px auto 0 auto;}
+	#gracias section.txt{position:absolute;left:18%;top:45%;}
 
 ::-webkit-input-placeholder{color:#000;font-size:1.2em;font-family: 'UniviaProBook'; font-weight: bold}
 :-moxz-input-placeholder{color:#000;font-size:1.2em;font-family: 'UniviaProBook'; font-weight: bold}
@@ -179,6 +208,7 @@ p{margin-bottom:0;}
 	#redes ul li{margin:0 10px;}
 	.form-container form input[type=submit]{width:286px;}
 	.form-container form input[type=email]{width:286px;}
+	#gracias section.txt{position:absolute;left:11%;top:40%;}
 	
 
 ::-webkit-input-placeholder{color:#000;font-size:1em;font-family: 'UniviaProBook';}
@@ -190,7 +220,7 @@ p{margin-bottom:0;}
 /*320*/
 @media only screen and (max-width:320px){
 	#redes ul li{margin:0 5px;}
-	.logo{background-size:250px;}
+	.logo{background-size:250px;padding:10px 0;}
 }/*end 320*/
 
 
