@@ -1,4 +1,56 @@
-<?php get_header(); ?>
+<?php
+	get_header(); 
+
+
+			$apikey = '88d3b02931ad5bd3f881008b39e60330-us13';
+			$listid = '7de2b0b5ae';
+			$correo = isset($_POST["correo"]) ? $_POST["correo"] : NULL;
+			$server = "us13";
+			$merge_vars = array('FNAME'=>'null', 'LNAME'=>'null');
+
+
+			function mc_subscribe($correo, $fname, $apikey, $listid, $server) {
+
+			    $auth = base64_encode( 'LogisticaGeneral:'.$apikey);
+			    $data = array(
+			        'apikey'        => $apikey,
+			        'email_address' => $correo,
+			        'status'        => 'pending',
+			        'merge_fields'  => array(
+			            'FNAME' => $fname
+			            )
+			        );  
+			    
+			    $json_data = json_encode($data);
+			    $ch = curl_init();
+			    curl_setopt($ch, CURLOPT_URL, 'https://us13.api.mailchimp.com/3.0/lists/7de2b0b5ae/members/');
+			    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json',
+			        'Authorization: Basic '.$auth));
+			    curl_setopt($ch, CURLOPT_USERAGENT, 'PHP-MCAPI/3.0');
+			    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+			    curl_setopt($ch, CURLOPT_POST, true);
+			    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			    curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);
+			    $result = curl_exec($ch);
+
+			    //echo $result;
+
+			    // if ($debug) {
+			    //    // var_dump($result);
+			    //     die('<br><br> Te hemos enviado un correo de confirmación, por favor revisa tu correo');
+			    // }
+			    //die();
+			};
+
+			
+
+			if($correo){ 
+				mc_subscribe($correo, "", $apikey, $listid, $server);
+			}
+
+		
+?>
 
 
 	<section class="logo">
@@ -11,29 +63,40 @@
  -->
 	<section class="contenido">
 
+		
+
 		<?php
 			$args =  array('post_type'=>'page', 'posts_per_page'=>'1','pagename'=>'intro' );
 			$query = new WP_Query($args);
 			while($query->have_posts()){$query->the_post();
 		?>
-			<section class="txt-r">
+			<section class="txt-rojo">
 				<?php the_content(); ?>
 			</section>
 
-		<?php }?><!--endwhile-->
+		<?php } //http://tallerdecodigo.us13.list-manage1.com/subscribe/post ?><!--endwhile-->
 
-		<section class="form-container">
-			<span class="txt inscripcion">Inscríbete para recibir nuestras actualizacones.</span>
-			<form id="news" method="post" class="forma" action="http://tallerdecodigo.us13.list-manage1.com/subscribe/post">
+		<?php
+			if($correo) {
+		?>
+		<span class="txt inscripcion">Ya empezó el juego, checa tu mail para confirmar tu suscripción.</span>
+		<?php
 
-				<input type="hidden" name="u" value="d57f66c63d9622b29d87cea37">
-				<input type="hidden" name="id" value="1518b034be">
+			} else {
+		?>
+			<section class="form-container">
+				<span class="txt inscripcion">Suscríbete para recibir nuestras actualizacones.</span>
+				<form id="news" method="POST" class="forma" action="">
 
-				<input type="email" name="MERGE0" id="MERGE0" placeholder="tu correo electrónico">
-				<input type="submit" calss="button" name="submit" value="Enviar">
-			</form>
-		</section>
+					<input type="hidden" name="u" value="88d3b02931ad5bd3f881008b39e60330">
+					<input type="hidden" name="id" value="7de2b0b5ae">
 
+					<input type="email" name="correo" id="correo" placeholder="tu correo electrónico">
+					<input type="submit" class="button" value="Enviar">
+				</form>
+			</section>
+
+		<?php } ?>
 		<section id="respuesta">
 			<!--respuesta de subscrpcion-->
 		</section>	

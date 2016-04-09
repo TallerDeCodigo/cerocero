@@ -77,21 +77,22 @@ h1   { font-size: 24px; font-size: 2.4rem; } /* =24px */
 
 /*** GENERAL ***/
 .txt{font-family:'UniviaProBook';color:#fff;font-size:20pt;line-height: 30px}
-.txt-r{font-family:'UniviaProBook';color:#ff574a;font-size:20pt;line-height: 30px}
+.txt-rojo{font-family:'UniviaProBook';color:#ff574a;font-size:20pt;}
+.txt-rojo p{line-height: 60px}
 .titulo{font-family:'UniviaProBook';color:#000;font-size:30pt;}
 
 body.home{background-image:url('images/bg-c.png');background-size:cover;background-position:center;width:100%;text-align:center;background-repeat:no-repeat}
 
 body.page{background-image:none;background-color:#fff;background-size:cover;background-position:center;position:absolute;top:0;left:0;width:100%;text-align:left;background-repeat: no-repeat;text-align: center}
-.contenido{}
-.logo{width:340px; padding:80px 0; margin: 0 auto; background: url('images/logocero.svg') no-repeat center; }
-.logo h1 {text-indent: -10000000px;}
-.form-container{margin-top:110px;padding:0 20px;}
-.form-container form input[type=email]{width:407px;height:58px;border-radius: 10px;background:rgba(255,255,255,0.3);border:none;text-align: center;outline: none}
-.txt-r{margin-top:70px;padding:0 20px;}
-.form-container form input[type=submit]{width:179px;height:58px;border-radius: 10px;background:#FF574A;border:none;text-align: center;outline:none;}
 
-form#news{margin-top:40px;}
+.logo{width:340px; padding:60px 0; margin: 0 auto; background: url('images/logocero.svg') no-repeat center; }
+.logo h1 {text-indent: -10000000px;}
+.form-container{margin-top:80px;padding:0 20px;}
+.form-container form input[type=email]{width:407px;height:58px;border-radius: 10px;background:rgba(255,255,255,0.3);border:none;text-align: center;outline: none}
+.txt-rojo{padding:0 20px;}
+.form-container form input[type=submit]{width:179px;height:58px;border-radius: 10px;background:#FF574A;border:none;text-align: center;outline:none;}
+.contenido{margin}
+#news{margin-top:30px;}
 
 ::-webkit-input-placeholder{color:#000;font-size:1.2em;font-family: 'UniviaProBook';text-align: center}
 :-moxz-input-placeholder{color:#000;font-size:1.2em;font-family: 'UniviaProBook';text-align: center}
@@ -100,6 +101,7 @@ form#news{margin-top:40px;}
 #redes{margin-top:74px;}
 #redes ul li{display:inline-block;margin:0 25px;}
 #disclaimer{margin-top:60px;}
+p{margin-bottom:0;}
 #disclaimer p a{text-decoration: none; color:#515151;}
 
 /*respuesta*/
@@ -116,6 +118,31 @@ form#news{margin-top:40px;}
 /*media queries	*/
 /*				*/
 
+/*1640*/
+@media only screen and (max-width:1640px){
+	.logo{padding:40px 0;}
+	.txt-rojo p{line-height: 40px}
+}/*end 1640*/
+
+
+/*1124*/
+@media only screen and (max-width:1124px){
+	.txt-rojo p{line-height: 41px}
+	#redes{margin-top:50px;}
+	#redes ul li img{width:40px;height:auto;}
+}/*end 1124*/
+
+/*1024*/
+@media only screen and (max-width:1024px){
+	.txt-rojo p{line-height: 31px}
+}/*end 1024*/
+
+/*768*/
+@media only screen and (max-width:768px){
+	.logo{padding:60px 0;}
+	#redes ul li img{width:60px;height:auto;}
+}/*end 768*/
+
 /*630*/
 @media only screen and (max-width:630px){
 	.form-container form input[type=email]{width:360px;}
@@ -126,10 +153,10 @@ form#news{margin-top:40px;}
 /*425*/
 @media only screen and (max-width:425px){
 	#redes ul li{margin:0 10px;}
-	.logo{width:200px;}
+	.logo{background-size: 300px}
 	.logo img {width:200px;}
 
-	.txt-r{font-family:'UniviaProBook';color:#ff574a;font-size:16pt;}
+	.txt-rojo{font-family:'UniviaProBook';color:#ff574a;font-size:16pt;margin-top:0;}
 	.txt{font-family:'UniviaProBook';color:#fff;font-size:16pt;}
 	.texto{margin:50px auto 0 auto;}
 
@@ -163,7 +190,7 @@ form#news{margin-top:40px;}
 /*320*/
 @media only screen and (max-width:320px){
 	#redes ul li{margin:0 5px;}
-
+	.logo{background-size:250px;}
 }/*end 320*/
 
 

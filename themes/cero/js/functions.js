@@ -42,9 +42,6 @@
 			console.log(ventana);
 			$('.container').height(ventana + 'px');
 		}
-
-
-
 	});
 
 })(jQuery);
