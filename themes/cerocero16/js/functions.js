@@ -31,8 +31,6 @@
 
 		$(document).ready(function() {
 
-
-
 			$(window).on("load",function(){
 				$("body").animate({scrollTop: 0}, 5);
 			    $("body").delay(300).animate({opacity: 1 }, 200);
@@ -52,6 +50,7 @@
 					$(".social-btn").addClass('reduce');
 
 			    }
+
 			});
 
 			$(window).on("load resize",function(){
@@ -86,6 +85,10 @@
 
 			    }
 
+			    setTimeout(function() {
+	                $(window).resize();
+	            }, 100);
+
 			});
 
 			if ($("body").hasClass('home')) {
@@ -94,21 +97,21 @@
 				var counter = 1;
 
 				win.scroll(function() {
-					if ($(document).height() - win.height() == win.scrollTop()) {
-						console.log('Pagina' + counter );
-			            counter++;
-						$(".loading").animate({opacity: 0.35 }, 200);
-						if (counter < 5) {
-							setTimeout(function() {
-				                $('.post-container').append('<div class="post"><div class="post-header"><span>hace 2 días</span><span>Fuente: <a href="#">Lorem Ipsum</a></span></div><div class="post-content"><a href="single.html"><h2>Lorem Ipsum Dolor Sit Amet</h2></a><a href="single.html"><img src="images/post.png"></a></div><div class="post-footer"><a><i class="material-icons">share</i>Compartir</a><a><i class="material-icons">chat_bubble_outline</i>Comentar</a><a><i class="material-icons">file_download</i>Descargar</a></div></div><div class="post"><div class="post-header"><span>hace 2 días</span><span>Fuente: <a href="#">Lorem Ipsum</a></span></div><div class="post-content"><a href="single.html"><h2>Lorem Ipsum Dolor Sit Amet</h2></a><a href="single.html"><img src="images/post.png"></a></div><div class="post-footer"><a><i class="material-icons">share</i>Compartir</a><a><i class="material-icons">chat_bubble_outline</i>Comentar</a><a><i class="material-icons">file_download</i>Descargar</a></div></div><div class="post"><div class="post-header"><span>hace 2 días</span><span>Fuente: <a href="#">Lorem Ipsum</a></span></div><div class="post-content"><a href="single.html"><h2>Lorem Ipsum Dolor Sit Amet</h2></a><a href="single.html"><img src="images/post.png"></a></div><div class="post-footer"><a><i class="material-icons">share</i>Compartir</a><a><i class="material-icons">chat_bubble_outline</i>Comentar</a><a><i class="material-icons">file_download</i>Descargar</a></div></div>');
-				                $(".loading").animate({opacity: 0 }, 100);
-				            }, 1500);
-						} else {
-							setTimeout(function() {
-								$(".loading").removeClass("animated");
-				                $(".loading span").html("FIN DE LA LISTA");
-				            }, 1500);
-						}
+					// if ($(document).height() - win.height() == win.scrollTop()) {
+					// 	console.log('Pagina' + counter );
+			  //           counter++;
+					// 	$(".loading").animate({opacity: 0.35 }, 200);
+					// 	if (counter < 5) {
+					// 		setTimeout(function() {
+				 //                $('.post-container').append('<div class="post"><div class="post-header"><span>hace 2 días</span><span>Fuente: <a href="#">Lorem Ipsum</a></span></div><div class="post-content"><a href="single.html"><h2>Lorem Ipsum Dolor Sit Amet</h2></a><a href="single.html"><img src="images/post.png"></a></div><div class="post-footer"><a><i class="material-icons">share</i>Compartir</a><a><i class="material-icons">chat_bubble_outline</i>Comentar</a><a><i class="material-icons">file_download</i>Descargar</a></div></div><div class="post"><div class="post-header"><span>hace 2 días</span><span>Fuente: <a href="#">Lorem Ipsum</a></span></div><div class="post-content"><a href="single.html"><h2>Lorem Ipsum Dolor Sit Amet</h2></a><a href="single.html"><img src="images/post.png"></a></div><div class="post-footer"><a><i class="material-icons">share</i>Compartir</a><a><i class="material-icons">chat_bubble_outline</i>Comentar</a><a><i class="material-icons">file_download</i>Descargar</a></div></div><div class="post"><div class="post-header"><span>hace 2 días</span><span>Fuente: <a href="#">Lorem Ipsum</a></span></div><div class="post-content"><a href="single.html"><h2>Lorem Ipsum Dolor Sit Amet</h2></a><a href="single.html"><img src="images/post.png"></a></div><div class="post-footer"><a><i class="material-icons">share</i>Compartir</a><a><i class="material-icons">chat_bubble_outline</i>Comentar</a><a><i class="material-icons">file_download</i>Descargar</a></div></div>');
+				 //                $(".loading").animate({opacity: 0 }, 100);
+				 //            }, 1500);
+					// 	} else {
+					// 		setTimeout(function() {
+					// 			$(".loading").removeClass("animated");
+				 //                $(".loading span").html("FIN DE LA LISTA");
+				 //            }, 1500);
+					// 	}
 					
 					/*
 					$.ajax({
@@ -121,7 +124,7 @@
 					});
 					*/
 			            
-					}
+					// }
 				});
 			}
 
@@ -185,6 +188,24 @@
 	                $(".searchbar input").show();
 	                $(".searchbar input").focus();
 	            }, 500);
+	        });
+
+	        $(document).on('click', '.open-share', function() {
+	        	$(this).parent().parent().find('.shares').toggle();
+	            $(this).parent().parent().find('.shares').animate({marginTop:"0px",opacity:"1"}, 200);
+	        });
+
+	        $(document).on('click', '.copylink', function() {
+	        	var copyTextarea = $(this).parent().find('textarea');
+	        	  copyTextarea.focus().select();
+	        	  try {
+	        	    var successful = document.execCommand('copy');
+	        	    var msg = successful ? 'successful' : 'unsuccessful';
+	        	    console.log('Copying text command was ' + msg);
+	        	    $(this).parent().toggle();
+	        	  } catch (err) {
+	        	    console.log('Oops, unable to copy');
+	        	  }
 	        });
 
 			$(document).mouseup(function (e){
@@ -267,6 +288,17 @@
 
 		});
 
+	});
+
+	$(window).on("resize",function(){
+	    var facebook = $('.facebook').width();
+	    facebook = facebook+"px";
+
+	    console.log(facebook);
+
+	    $('.fb-comments').css({'width':facebook});
+	    $('.fb-comments span:first-child').css({'width':facebook});
+	    $('.fb-comments iframe').css({'width':facebook});
 
 	});
 

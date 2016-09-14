@@ -77,7 +77,7 @@
 
 
 	add_filter( 'show_admin_bar', function($content){
-		return ( current_user_can('administrator') ) ? $content : false;
+		return ( current_user_can('administrator') ) ? $content : $content;
 	});
 
 
@@ -135,14 +135,14 @@
 
 
 
-	add_action( 'pre_get_posts', function($query){
+	// add_action( 'pre_get_posts', function($query){
 
-		if ( $query->is_main_query() and ! is_admin() ) {
+	// 	if ( $query->is_main_query() and ! is_admin() ) {
+	// 		$query->set("posts_per_page", -1);
+	// 	}
+	// 	return $query;
 
-		}
-		return $query;
-
-	});
+	// });
 
 
 
@@ -261,4 +261,13 @@
 
 		}
 		return FALSE;
+	}
+
+
+	add_filter('next_posts_link_attributes', 'posts_link_attributes');
+	add_filter('previous_posts_link_attributes', 'posts_link_attributes');
+
+	function posts_link_attributes(){
+	   return 'class="internav"';
+
 	}

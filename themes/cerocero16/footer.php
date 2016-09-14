@@ -1,5 +1,5 @@
 	
-		<div class="loading animated"><img src="<?php echo THEMEPATH; ?>images/logo/logo-1.svg"><br><span>CARGANDO . . .</span></div>
+		<!-- <div class="loading animated"><img src="<?php echo THEMEPATH; ?>images/logo/logo-1.png"><br><span>CARGANDO . . .</span></div> -->
 		<footer>
 			<div class="wrapper">
 				<nav class="social-foot">
