@@ -297,3 +297,10 @@ footer a {color:inherit; text-decoration:none;}
     .single-left, .single-right {width:100%;}
 
 }
+
+/*404*/
+
+.grey {background:#d8d8d8;width:100%;height:460px;text-align:center;}
+.grey div {width:90%;max-width:540px;display:inline-block;position:relative;margin-top:165px;}
+.grey div img {width:100%;}
+.grey p {color:#5c5c5c;text-align:left;font-size:155%;padding-left:165px;line-height:175%;}

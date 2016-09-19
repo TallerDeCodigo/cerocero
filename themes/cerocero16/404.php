@@ -1,157 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Page Not Found :(</title>
-        <style>
-            ::-moz-selection {
-                background: #b3d4fc;
-                text-shadow: none;
-            }
+<?php  
+    get_header(); 
 
-            ::selection {
-                background: #b3d4fc;
-                text-shadow: none;
-            }
+    $args = array('post_type' => 'post','posts_per_page' => 7, 'post_status' => 'publish');
 
-            html {
-                padding: 30px 10px;
-                font-size: 20px;
-                line-height: 1.4;
-                color: #737373;
-                background: #f0f0f0;
-                -webkit-text-size-adjust: 100%;
-                -ms-text-size-adjust: 100%;
-            }
+    $posts = new WP_Query($args);
 
-            html,
-            input {
-                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            }
+  ?>
 
-            body {
-                max-width: 500px;
-                _width: 500px;
-                padding: 30px 20px 50px;
-                border: 1px solid #b3b3b3;
-                border-radius: 4px;
-                margin: 0 auto;
-                box-shadow: 0 1px 10px #a7a7a7, inset 0 1px 0 #fff;
-                background: #fcfcfc;
-            }
-
-            h1 {
-                margin: 0 10px;
-                font-size: 50px;
-                text-align: center;
-            }
-
-            h1 span {
-                color: #bbb;
-            }
-
-            h3 {
-                margin: 1.5em 0 0.5em;
-            }
-
-            p {
-                margin: 1em 0;
-            }
-
-            ul {
-                padding: 0 0 0 40px;
-                margin: 1em 0;
-            }
-
-            .container {
-                max-width: 380px;
-                _width: 380px;
-                margin: 0 auto;
-            }
-
-            /* google search */
-
-            #goog-fixurl ul {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-            }
-
-            #goog-fixurl form {
-                margin: 0;
-            }
-
-            #goog-wm-qt,
-            #goog-wm-sb {
-                border: 1px solid #bbb;
-                font-size: 16px;
-                line-height: normal;
-                vertical-align: top;
-                color: #444;
-                border-radius: 2px;
-            }
-
-            #goog-wm-qt {
-                width: 220px;
-                height: 20px;
-                padding: 5px;
-                margin: 5px 10px 0 0;
-                box-shadow: inset 0 1px 1px #ccc;
-            }
-
-            #goog-wm-sb {
-                display: inline-block;
-                height: 32px;
-                padding: 0 10px;
-                margin: 5px 0 0;
-                white-space: nowrap;
-                cursor: pointer;
-                background-color: #f5f5f5;
-                background-image: -webkit-linear-gradient(rgba(255,255,255,0), #f1f1f1);
-                background-image: -moz-linear-gradient(rgba(255,255,255,0), #f1f1f1);
-                background-image: -ms-linear-gradient(rgba(255,255,255,0), #f1f1f1);
-                background-image: -o-linear-gradient(rgba(255,255,255,0), #f1f1f1);
-                -webkit-appearance: none;
-                -moz-appearance: none;
-                appearance: none;
-                *overflow: visible;
-                *display: inline;
-                *zoom: 1;
-            }
-
-            #goog-wm-sb:hover,
-            #goog-wm-sb:focus {
-                border-color: #aaa;
-                box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-                background-color: #f8f8f8;
-            }
-
-            #goog-wm-qt:hover,
-            #goog-wm-qt:focus {
-                border-color: #105cb6;
-                outline: 0;
-                color: #222;
-            }
-
-            input::-moz-focus-inner {
-                padding: 0;
-                border: 0;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <h1>Not found <span>:(</span></h1>
-            <p>Sorry, but the page you were trying to view does not exist.</p>
-            <p>It looks like this was the result of either:</p>
-            <ul>
-                <li>a mistyped address</li>
-                <li>an out-of-date link</li>
-            </ul>
-            <script>
-                var GOOG_FIXURL_LANG = (navigator.language || '').slice(0,2),GOOG_FIXURL_SITE = location.host;
-            </script>
-            <script src="//linkhelp.clients.google.com/tbproxy/lh/wm/fixurl.js"></script>
+    <section>
+    <div class="grey">
+        <div>
+            <img src="<?php echo THEMEPATH; ?>images/404.png">
+            <p>no encontramos lo que estás buscando pero esto podría interesarte</p>
         </div>
-    </body>
-</html>
+    </div>
+        <div class="wrapper post-container">
+
+        <?php 
+
+            if($posts -> have_posts()) : while($posts -> have_posts()) : 
+                $posts -> the_post();
+                $fuente = get_post_meta($post->ID, "_fuente_meta", TRUE);
+                $url_fuente = get_post_meta($post->ID, "_url_fuente_meta", TRUE);
+                $url_fuente = ($url_fuente !== '') ? $url_fuente : "#"; ?>
+
+            <article class="post">
+                <div class="post-header">
+                    <span>Hace <?php echo human_time_diff( get_the_time('U') ); ?></span>
+                <?php
+                    if($fuente !== ''){ ?>
+                        <span>Fuente: <a href="<?php echo $url_fuente; ?>"><?php echo $fuente; ?></a></span>
+                <?php
+                    } ?>
+                </div>
+                <div class="post-content">
+                    <a href="<?php the_permalink(); ?>"><h2><?php the_title(); ?></h2></a>
+                    <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail("large"); ?></a>
+                </div>
+                <div class="shares">
+                    <textarea><?php the_permalink(); ?></textarea>
+                    <a class="copylink"><i class="fa fa-link" aria-hidden="true"></i> Copiar el enlace</a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>" target="popup" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>','Compartir en Facebook','width=600,height=400')"><i class="fa fa-facebook-square" aria-hidden="true"></i> Compartir en Facebook</a>
+                    <a href="https://twitter.com/share?text=<?php the_title(); ?>&amp;url=<?php the_permalink(); ?>&amp;via=ceroceromx" target="popup" onclick="window.open('https://twitter.com/share?text=<?php the_title(); ?>&amp;url=<?php the_permalink(); ?>&amp;via=ceroceromx','Compartir en Twitter','width=600,height=400')"><i class="fa fa-twitter" aria-hidden="true"></i> Compartir en Twitter</a>
+                    <a href="http://www.reddit.com/submit?url=<?php the_permalink(); ?>&title=<?php the_title(); ?>" target="popup" onclick="window.open('http://www.reddit.com/submit?url=<?php the_permalink(); ?>&title=<?php the_title(); ?>','Compartir en Reddit','width=600,height=400')"><i class="fa fa-reddit" aria-hidden="true"></i> Compartir en Reddit</a>
+                </div>
+                <div class="post-footer">
+                    <a class="open-share"><i class="material-icons">share</i>Compartir</a>
+                    <a href="<?php the_permalink(); ?>" ><i class="material-icons">chat_bubble_outline</i>Comentar</a>
+                    <a download="<?php echo $post->slug; ?>" href="<?php echo the_post_thumbnail_url( "full" ); ?>" ><i class="material-icons">file_download</i>Descargar</a>
+                </div>
+            </article>
+            
+        <?php endwhile; endif; ?>
+        </div>
+        <br>
+        <br>
+    </section>
+<?php get_footer(); ?>
