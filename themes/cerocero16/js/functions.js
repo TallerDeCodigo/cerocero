@@ -219,6 +219,10 @@
 			            $(".social-btn").animate({opacity:"1"}, 150); 
 			        }, 50);
 			    }
+			    var container = $(".shares");
+			    if (!container.is(e.target)&& container.has(e.target).length === 0) {
+			        $('.shares').fadeOut();
+			    }
 			});
 
 			$('.topscroll img:nth-of-type(1)').transe({
@@ -301,5 +305,17 @@
 	    $('.fb-comments iframe').css({'width':facebook});
 
 	});
+
+	$(window).scroll(function() {
+
+	    if ($(this).scrollTop()>0)
+	     {
+	        $('.shares').fadeOut();
+	     }
+	    else
+	     {
+	      $('.shares').fadeIn();
+	     }
+	 });
 
 })(jQuery);
